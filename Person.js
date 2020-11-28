@@ -20,9 +20,10 @@ class Person{
         this.email = email;
     }
 
-    toString(){
+    toString() {
         return "First name: " + this.firstName + "\nLast name: " + this.lastName + "\nAddress: " + this.address + "\nCity: " + this.city + "\nState: " + this.state + "\nZip: " + this.zip + "\nPhone number: " + this.phoneNumber + "\nEmail: " + this.email; 
     }
+
 }
 
     person = new Person("Shravya", "K", "Bangalore", "Bangalore", "KA", 560065, 9591255544, "shravya@gmail.com");
