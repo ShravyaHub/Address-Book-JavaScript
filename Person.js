@@ -170,8 +170,8 @@ function findPersonCityOrState(locationField, location){
 }
 
 let person1 = new Person("Shravya", "Kotha", "Bangalore", "Bangalore", "Karnataka", 560076, "91 9594633355", "shravya@gmail.com");
-let person2 = new Person("Radhika", "Mantri", "Bangalore", "Bangalore", "Karnataka", 561076, "91 9594636355", "radhika@gmail.com");
-let person3 = new Person("Priya", "Thygraj", "Hyderabad", "Hyderabad", "Andhra", 564076, "91 9594633155", "priya@gmail.com");
+let person2 = new Person("Radhika", "Mantri", "Bangalore", "Bangalore", "Karnataka", 563076, "91 9594636355", "radhika@gmail.com");
+let person3 = new Person("Priya", "Thygraj", "Hyderabad", "Hyderabad", "Andhra", 560076, "91 9594633155", "priya@gmail.com");
 
 addPerson(person1);
 addPerson(person2);
@@ -184,5 +184,9 @@ deletePerson("Radhika", "Mantri");
 console.log("Number of People in the address book is " + personArray.reduce(count => count + 1, 0)); 
 findPersonCityOrState("city", "Bangalore");
 console.log("Sorted address book by first name:\n" + personArray.sort()); 
+console.log("Sort by city: " + personArray.sort((contact1, contact2) => contact1.city.localeCompare(contact2.city)));
+console.log("Sort by state: " + personArray.sort((contact1, contact2) => contact1.state.localeCompare(contact2.state)));
+console.log("Sort by zip: " + personArray.sort((contact1, contact2) => contact1.zip-(contact2.zip)));
+
 
 
