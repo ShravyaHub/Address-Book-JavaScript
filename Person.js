@@ -162,8 +162,10 @@ function findPersonCityOrState(locationField, location){
     switch(locationField) {
         case "city":
             console.log(personArray.filter(person => person.city == location));
+            console.log("Number of conatcts in " + location + " is = " + personArray.filter(person => person.city == location).reduce(count => count + 1, 0));
         case "state":
             console.log(personArray.filter(person => person.state == location));
+            console.log("Number of conatcts in " + location + " is = " + personArray.filter(person => person.state == location).reduce(count => count + 1, 0));
     }
 }
 
