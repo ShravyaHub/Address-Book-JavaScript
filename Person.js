@@ -167,24 +167,18 @@ function findPersonCityOrState(locationField, location){
     }
 }
 
-try {
+let person1 = new Person("Shravya", "Kotha", "Bangalore", "Bangalore", "Karnataka", 560076, "91 9594633355", "shravya@gmail.com");
+let person2 = new Person("Radhika", "Mantri", "Bangalore", "Bangalore", "Karnataka", 561076, "91 9594636355", "radhika@gmail.com");
+let person3 = new Person("Priya", "Thygraj", "Hyderabad", "Hyderabad", "Andhra", 564076, "91 9594633155", "priya@gmail.com");
 
-    let person1 = new Person("Shravya", "Kotha", "Bangalore", "Bangalore", "Karnataka", 560076, "91 9594633355", "shravya@gmail.com");
-    let person2 = new Person("Radhika", "Mantri", "Bangalore", "Bangalore", "Karnataka", 561076, "91 9594636355", "radhika@gmail.com");
-    let person3 = new Person("Priya", "Thygraj", "Hyderabad", "Hyderabad", "Andhra", 564076, "91 9594633155", "priya@gmail.com");
+addPerson(person1);
+addPerson(person2);
+addPerson(person3);
+console.log(personArray);
 
-    addPerson(person1);
-    addPerson(person2);
-    addPerson(person3);
-    console.log(personArray);
+findPerson("Shravya", "Kotha");
+editPerson("Shravya", "Kotha", "address", "J P Nagar");
+deletePerson("Radhika", "Mantri");
+console.log("Number of People in the address book is " + personArray.reduce(count => count + 1, 0)); 
+findPersonCityOrState("city", "Bangalore");
 
-    findPerson("Shravya", "Kotha");
-    editPerson("Shravya", "Kotha", "address", "J P Nagar");
-    deletePerson("Radhika", "Mantri");
-    console.log("Number of People in the address book is " + personArray.reduce(count => count + 1, 0)); 
-    findPersonCityOrState("city", "Bangalore");
-
-
-} catch(Exception) {
-    console.log(Exception)
-}
