@@ -183,4 +183,6 @@ editPerson("Shravya", "Kotha", "address", "J P Nagar");
 deletePerson("Radhika", "Mantri");
 console.log("Number of People in the address book is " + personArray.reduce(count => count + 1, 0)); 
 findPersonCityOrState("city", "Bangalore");
+console.log("Sorted address book by first name:\n" + personArray.sort()); 
+
 
