@@ -1,4 +1,4 @@
-const FIRST_NAME_REGEX = new RegExp("^[A-Z][a-z]{2,}$");
+const FIRST_NAME_REGEX = /^[A-Z][a-z]{2,}$/;
 const LAST_NAME_REGEX = /^[A-Z][a-z]{2,}$/;
 const ADDRESS_REGEX = /^[A-Z][a-z]{3,}$/;
 const CITY_REGEX = /^[A-Z][a-z]{3,}$/;
@@ -91,6 +91,42 @@ class Person {
     }
     
 }
+let personFound;
+
+function findPerson(firstName, lastName) {
+    personArray.forEach(person => {
+        if(person.firstName == firstName && person.lastName == lastName)
+            personFound = person;
+            console.log("Person Found: " + personFound.firstName + " " + personFound.lastName);
+    });
+}
+
+function editPerson(firstName, lastName, field, newValue) {
+    let person = personFound.firstName;
+    switch(field) {
+        case "address": let address = newValue;
+                person.address = address;
+                personArray.
+                break;
+        case "city": let city = newValue;
+                person.city = city;
+                break;
+        case "state": let state = newValue;
+                person.state = state;
+                break;
+        case "zip": let zip = newValue;
+                person.zip = zip;
+                break;
+        case "phone number": let phoneNumber = newValue;
+                contact.phoneNumber = phoneNumber;
+                break;
+        case "email": let email = newValue;
+                contact.email = email;
+                break;
+        default: 
+            throw "Invalid choice";
+    }
+}
 
 try {
     let person1 = new Person("Shravya", "Kotha", "Bangalore", "Bangalore", "Karnataka", 560076, "91 9594633355", "shravya@gmail.com");
@@ -100,9 +136,12 @@ try {
     personArray.push(person1);
     personArray.push(person2);
     personArray.push(person3);
+    console.log(personArray);
+
+    findPerson("Shravya", "Kotha");
+    editPerson("Shravya", "Kotha", "address", "J P Nagar");
+
 
 } catch(Exception) {
     console.log(Exception)
 }
-if(personArray.length > 0)
-    console.log(personArray);
