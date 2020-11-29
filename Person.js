@@ -98,10 +98,14 @@ function findPerson(firstName, lastName) {
         if(person.firstName == firstName && person.lastName == lastName)
             personFound = person;
     });
-    console.log("Person Found: " + personFound.firstName + " " + personFound.lastName);
+    if(personFound != null)
+        console.log("Person Found: " + personFound.firstName + " " + personFound.lastName);
+    else
+        throw "Contact does not exist"
 }
 
 function editPerson(firstName, lastName, field, newValue) {
+    findPerson(firstName, lastName);
     let person = personFound.firstName;
     switch(field) {
         case "address": 
@@ -143,14 +147,11 @@ function editPerson(firstName, lastName, field, newValue) {
         default: 
             throw "Invalid choice";
     }
-    personArray.forEach(person => {
-        if(person.firstName == firstName && person.lastName == lastName)
-            person.address = newValue;
-    });
     console.log(personArray);
 }
 
 function deletePerson(firstName, lastName) {
+    findPerson(firstName, lastName);
     personArray.forEach(person => {
         if(person.firstName == firstName && person.lastName == lastName)
             personArray.pop();
@@ -159,13 +160,27 @@ function deletePerson(firstName, lastName) {
 }
 
 try {
+
+    function addPerson(person) {
+        if(personArray == null) {
+            personArray.push(person);
+        }
+        personArray.forEach(eachPerson => {
+            if(eachPerson.firstName == person.firstName && eachPerson.lastName == person.lastName)
+                personFound = eachPerson;
+        });
+        if(personFound == null)
+            personArray.push(person);
+        else 
+            throw "Person exists";
+        }
     let person1 = new Person("Shravya", "Kotha", "Bangalore", "Bangalore", "Karnataka", 560076, "91 9594633355", "shravya@gmail.com");
     let person2 = new Person("Radhika", "Mantri", "Bangalore", "Bangalore", "Karnataka", 561076, "91 9594636355", "radhika@gmail.com");
     let person3 = new Person("Priya", "Thygraj", "Hyderabad", "Hyderabad", "Andhra", 564076, "91 9594633155", "priya@gmail.com");
 
-    personArray.push(person1);
-    personArray.push(person2);
-    personArray.push(person3);
+    addPerson(person1);
+    addPerson(person2);
+    addPerson(person3);
     console.log(personArray);
 
     findPerson("Shravya", "Kotha");
