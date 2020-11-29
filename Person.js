@@ -107,73 +107,68 @@ function findPerson(firstName, lastName) {
 function editPerson(firstName, lastName, field, newValue) {
     findPerson(firstName, lastName);
     let person = personFound.firstName;
-    switch(field) {
-        case "address": 
-            personArray.forEach(person => {
-            if(person.firstName == firstName && person.lastName == lastName)
+    personArray.forEach(person => {
+        if(person.firstName == firstName && person.lastName == lastName)
+        switch(field) {
+            case "address": 
                 person.address = newValue;
-            });
-            break;
-        case "city": 
-            personArray.forEach(person => {
-            if(person.firstName == firstName && person.lastName == lastName)
+                break;
+            case "city": 
                 person.city = newValue;
-            });
-            break;
-        case "state": 
-            personArray.forEach(person => {
-            if(person.firstName == firstName && person.lastName == lastName)
+                break;
+            case "state": 
                 person.state = newValue;
-            });
-            break;
-        case "zip": 
-            personArray.forEach(person => {
-            if(person.firstName == firstName && person.lastName == lastName)
+                break;
+            case "zip": 
                 person.zip = newValue;
-            });
-            break;
-        case "phone number": 
-            personArray.forEach(person => {
-            if(person.firstName == firstName && person.lastName == lastName)
+                break;
+            case "phone number": 
                 person.phoneNumber = newValue;
-            });
-            break;
-        case "email": 
-            personArray.forEach(person => {
-            if(person.firstName == firstName && person.lastName == lastName)
+                break;
+            case "email": 
                 person.email = newValue;
-            });
-            break;
-        default: 
-            throw "Invalid choice";
-    }
+                break;
+            default: 
+                throw "Invalid choice";
+        }
+        });
     console.log(personArray);
 }
 
 function deletePerson(firstName, lastName) {
-    findPerson(firstName, lastName);
-    personArray.forEach(person => {
-        if(person.firstName == firstName && person.lastName == lastName)
-            personArray.pop();
-        });
-    console.log(personArray);
+    let index = personArray.findIndex(person => person.firstName == firstName && person.lastName == lastName);
+    if (index != -1) {
+        personArray.splice(index, 1);
+        console.log(personArray);
+    } else 
+        throw "Person does not exist in address book"
+}
+
+function addPerson(person) {
+    if(personArray == null) {
+        personArray.push(person);
+    }
+    personArray.forEach(eachPerson => {
+        if(eachPerson.firstName == person.firstName && eachPerson.lastName == person.lastName)
+            personFound = eachPerson;
+    });
+    if(personFound == null)
+        personArray.push(person);
+    else 
+        throw "Person exists";
+}
+
+function findPersonCityOrState(locationField, location){
+    switch(locationField) {
+        case "city":
+            console.log(personArray.filter(person => person.city == location));
+        case "state":
+            console.log(personArray.filter(person => person.state == location));
+    }
 }
 
 try {
 
-    function addPerson(person) {
-        if(personArray == null) {
-            personArray.push(person);
-        }
-        personArray.forEach(eachPerson => {
-            if(eachPerson.firstName == person.firstName && eachPerson.lastName == person.lastName)
-                personFound = eachPerson;
-        });
-        if(personFound == null)
-            personArray.push(person);
-        else 
-            throw "Person exists";
-        }
     let person1 = new Person("Shravya", "Kotha", "Bangalore", "Bangalore", "Karnataka", 560076, "91 9594633355", "shravya@gmail.com");
     let person2 = new Person("Radhika", "Mantri", "Bangalore", "Bangalore", "Karnataka", 561076, "91 9594636355", "radhika@gmail.com");
     let person3 = new Person("Priya", "Thygraj", "Hyderabad", "Hyderabad", "Andhra", 564076, "91 9594633155", "priya@gmail.com");
@@ -185,8 +180,9 @@ try {
 
     findPerson("Shravya", "Kotha");
     editPerson("Shravya", "Kotha", "address", "J P Nagar");
-    deletePerson("Priya", "Thygraj");
+    deletePerson("Radhika", "Mantri");
     console.log("Number of People in the address book is " + personArray.reduce(count => count + 1, 0)); 
+    findPersonCityOrState("city", "Bangalore");
 
 
 } catch(Exception) {
